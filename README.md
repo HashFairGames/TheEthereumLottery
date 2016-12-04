@@ -10,12 +10,12 @@
   they are provided in Wei, not Ether (10^18 Wei = Ether).  
   Use Withdraw() function to pay out.
 
-# Costs
+# Cost
   At this moment, you need to send 0.1 ETH to play.  
   You can always verify cost of play function - every draw has "Price of ticket" field with exact cost measured in Wei (10^-18 ETH)
 
 # Contract Address:
-    0x7698392fff47d8d4cee21295ad1f31b6ced9ad66
+    0x7698392fff47d8d4CeE21295aD1F31b6ced9ad66
 
 # JSON interface:
 
