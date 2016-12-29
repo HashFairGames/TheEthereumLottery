@@ -5,23 +5,23 @@
   To play you need to pick 4 numbers (range 0-255) and provide them sorted to Play() function.  
   To win you need to hit at least 1 number out of 4 WinningNums which will be announced once every week
   (or more often if the lottery will become more popular). If you hit all of the 4 numbers you will win
-  about 10 milion times more than you payed for lottery ticket.  
+  about 10 million times more than you payed for lottery ticket.  
   The exact values are always provided as GuessXOutOf4 entries in Ledger - notice that
   they are provided in Wei, not Ether (10^18 Wei = Ether).  
   Use Withdraw() function to pay out.
 
 # How much you can win?
-  At the moment if you guess X out of 4 Winning Numbers you will win:
-  1 out of 4:         1 ETH
-  2 out of 4:         6 ETH
-  3 out of 4:       880 ETH
-  4 out of 4: 1.000.000 ETH
+  At the moment if you guess X out of 4 Winning Numbers you will win:  
+  1 out of 4:         1 ETH  
+  2 out of 4:         6 ETH  
+  3 out of 4:       880 ETH  
+  4 out of 4: 1.000.000 ETH  
 
 # Cost
   At the moment, you need to send 0.1 ETH to play.  
-  You can always verify cost of play function - every draw has "Price of ticket" field with exact cost measured in Wei (10^-18 ETH)
+  You can always verify cost of play function - every draw has "Price of ticket" field with exact cost measured in Wei (10^-18 ETH)  
   The Play() function will reject any amount of ETH which does not equal "Price of ticket" field, so you can not loose your ETH
-  on invalid bet (non sorted values will also be rejected). Any other function is free and reject any ETH you send to it.
+  on invalid bet (non sorted values will also be rejected). Any other function is free and reject any ETH you send to it.  
 
 # Contract Address:
     0x5C02b8789e23fB312402c70EeA29086567680Cb1
@@ -33,12 +33,12 @@
 # About
   The advantage of TheEthereumLottery is that it uses secret random value which only owner knows (called TheRand).
   A hash of TheRand (called OpeningHash) is announced at the beginning of every draw (lets say draw number N) - 
-  at this moment ticket price and the values of GuessXOutOf4 are publicly available and can not be changed.
-  When draw N+1 is announced in a block X, a hash of block X-1 is assigned to ClosingHash field of draw N.
+  at this moment ticket price and the values of GuessXOutOf4 are publicly available and can not be changed.  
+  When draw N+1 is announced in a block X, a hash of block X-1 is assigned to ClosingHash field of draw N. 
   After few minutes, owner announces TheRand which satisfy following expression: sha3(TheRand)==drawN.OpeningHash
-  then Rand32B=sha3(TheRand, ClosingHash) is calculated an treated as a source for WinningNumbers. 
-  For design purpouses at this moment ClosingHash is changed to Rand32B as it might be more interesting for someone 
-  watching lottery ledger to see that number instead of hash of some block. 
+  then Rand32B=sha3(TheRand, ClosingHash) is calculated an treated as a source for WinningNumbers.  
+  For design purposes at this moment ClosingHash is changed to Rand32B as it might be more interesting for someone 
+  watching lottery ledger to see that number instead of hash of some block.  
 
 # Why this way?
   This approach (1) unable players to cheat, because as long as no one knows TheRand, 
@@ -50,9 +50,10 @@
   at this block (which is very likely).
 
 # Timings
-  Withdraw is possible only after TheRand was announced (once every weekend, few minutes after openning next week draw).
+  Withdraw is possible only after TheRand was announced (once every weekend, few minutes after opening next week draw).  
   Players can use Refund function in order to refund their ETH used to make bet if the owner will not announce 
-  TheRand in ~2 weeks. That moment is called ExpirationTime on contract Ledger (which is visible from JSON interface).
+  TheRand in ~2 weeks.  
+  That moment is called ExpirationTime on contract Ledger (which is visible from JSON interface).
 
 
 
@@ -61,4 +62,4 @@
 # verify the code
 verified code with comments (and Player JSON Interface in it):   
 https://etherscan.io/address/0x5C02b8789e23fB312402c70EeA29086567680Cb1#code   
-! not yet available, solidity compiler 0.4.7 adds hash of source code to the end of bytecode. TheEthereumLottery was compiled, deployed and the source was published with additional comments, untill etherscan.io will take that into account you might want to check the source yourself (you need to notice that there are exactly 64 characters in the end of bytecode which differs from the original source code - this is always true for Solidity 0.4.7 compiler, not only this contract)
+! not yet available, solidity compiler 0.4.7 adds hash of source code to the end of bytecode. TheEthereumLottery was compiled, deployed and the source was published with additional comments, until etherscan.io will take that into account you might want to check the source yourself (you need to notice that there are exactly 64 characters in the end of bytecode which differs from the original source code - this is always true for Solidity 0.4.7 compiler, not only this contract)
