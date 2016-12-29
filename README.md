@@ -5,7 +5,7 @@
   To play you need to pick 4 numbers (range 0-255) and provide them sorted to Play() function.  
   To win you need to hit at least 1 number out of 4 WinningNums which will be announced once every week
   (or more often if the lottery will become more popular). If you hit all of the 4 numbers you will win
-  about 50 milion times more than you payed fot lottery ticket.  
+  about 10 milion times more than you payed fot lottery ticket.  
   The exact values are provided as GuessXOutOf4 entries in Ledger - notice that
   they are provided in Wei, not Ether (10^18 Wei = Ether).  
   Use Withdraw() function to pay out.
