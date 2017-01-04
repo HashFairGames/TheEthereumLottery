@@ -19,7 +19,7 @@ contract TheEthereumLottery {
     then Rand32B=sha3(TheRand, ClosingHash) is calculated an treated as a source for WinningNumbers, 
     also ClosingHash is changed to Rand32B as it might be more interesting for someone watching lottery ledger
     to see that number instead of hash of some block. 
-
+    
     This approach (1) unable players to cheat, because as long as no one knows TheRand, 
     no one can predict what WinningNums will be, (2) unable the owner to influence the WinningNums (in order to
     reduce average amount won) because OpeningHash=sha3(TheRand) was public before bets were made, and (3) reduces 
@@ -27,7 +27,7 @@ contract TheEthereumLottery {
     exactly the same block as new draw was announced - so anyone, with big probability, can think that if winning
     bet was made in this particular block - probably it was the owner, especially if no more bets were made 
     at this block (which is very likely).
-
+    
     Withdraw is possible only after TheRand was announced.
     Players can use Refund function in order to refund their ETH used to make bet if the owner will not announce 
     TheRand in ~2 weeks. That moment is called ExpirationTime on contract Ledger (which is visible from JSON interface).
@@ -35,22 +35,22 @@ contract TheEthereumLottery {
 /*
   Name:
   TheEthereumLottery
-
+  
   Contract Address:
-  0x5C02b8789e23fB312402c70EeA29086567680Cb1
+  0x9473BC8BB575Ffc15CB2179cd9398Bdf5730BF55
 
   JSON interface:
 
-[{"constant":true,"inputs":[],"name":"Announcements","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"IndexOfCurrentDraw","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"ledger","outputs":[{"name":"WinningNum1","type":"uint8"},{"name":"WinningNum2","type":"uint8"},{"name":"WinningNum3","type":"uint8"},{"name":"WinningNum4","type":"uint8"},{"name":"ClosingHash","type":"bytes32"},{"name":"OpeningHash","type":"bytes32"},{"name":"Guess4OutOf4","type":"uint256"},{"name":"Guess3OutOf4","type":"uint256"},{"name":"Guess2OutOf4","type":"uint256"},{"name":"Guess1OutOf4","type":"uint256"},{"name":"PriceOfTicket","type":"uint256"},{"name":"ExpirationTime","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"DrawIndex","type":"uint8"},{"name":"PlayerAddress","type":"address"}],"name":"MyBet","outputs":[{"name":"Nums","type":"uint8[4]"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"TheRand","type":"bytes32"}],"name":"CheckHash","outputs":[{"name":"OpeningHash","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"MyNum1","type":"uint8"},{"name":"MyNum2","type":"uint8"},{"name":"MyNum3","type":"uint8"},{"name":"MyNum4","type":"uint8"}],"name":"Play","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[{"name":"DrawIndex","type":"uint32"}],"name":"Withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"DrawIndex","type":"uint32"}],"name":"Refund","outputs":[],"payable":false,"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"IndexOfDraw","type":"uint256"},{"indexed":false,"name":"OpeningHash","type":"bytes32"},{"indexed":false,"name":"PriceOfTicketInWei","type":"uint256"},{"indexed":false,"name":"WeiToWin","type":"uint256"}],"name":"NewDrawReadyToPlay","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"IndexOfDraw","type":"uint32"},{"indexed":false,"name":"WinningNumber1","type":"uint8"},{"indexed":false,"name":"WinningNumber2","type":"uint8"},{"indexed":false,"name":"WinningNumber3","type":"uint8"},{"indexed":false,"name":"WinningNumber4","type":"uint8"},{"indexed":false,"name":"TheRand","type":"bytes32"}],"name":"DrawReadyToPayout","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"Wei","type":"uint256"}],"name":"PlayerWon","type":"event"}]
+[{"constant":true,"inputs":[],"name":"Announcements","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"IndexOfCurrentDraw","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"ledger","outputs":[{"name":"WinningNum1","type":"uint8"},{"name":"WinningNum2","type":"uint8"},{"name":"WinningNum3","type":"uint8"},{"name":"WinningNum4","type":"uint8"},{"name":"ClosingHash","type":"bytes32"},{"name":"OpeningHash","type":"bytes32"},{"name":"Guess4OutOf4","type":"uint256"},{"name":"Guess3OutOf4","type":"uint256"},{"name":"Guess2OutOf4","type":"uint256"},{"name":"Guess1OutOf4","type":"uint256"},{"name":"PriceOfTicket","type":"uint256"},{"name":"ExpirationTime","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"TheRand","type":"bytes32"}],"name":"CheckHash","outputs":[{"name":"OpeningHash","type":"bytes32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"DrawIndex","type":"uint8"},{"name":"PlayerAddress","type":"address"}],"name":"MyBet","outputs":[{"name":"Nums","type":"uint8[4]"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"referral_fee","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"referral_ledger","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"MyNum1","type":"uint8"},{"name":"MyNum2","type":"uint8"},{"name":"MyNum3","type":"uint8"},{"name":"MyNum4","type":"uint8"}],"name":"Play","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"DrawIndex","type":"uint32"}],"name":"Withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"DrawIndex","type":"uint32"}],"name":"Refund","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"MyNum1","type":"uint8"},{"name":"MyNum2","type":"uint8"},{"name":"MyNum3","type":"uint8"},{"name":"MyNum4","type":"uint8"},{"name":"ref","type":"address"}],"name":"PlayReferred","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[],"name":"Withdraw_referral","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"Deposit_referral","outputs":[],"payable":true,"type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"IndexOfDraw","type":"uint256"},{"indexed":false,"name":"OpeningHash","type":"bytes32"},{"indexed":false,"name":"PriceOfTicketInWei","type":"uint256"},{"indexed":false,"name":"WeiToWin","type":"uint256"}],"name":"NewDrawReadyToPlay","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"IndexOfDraw","type":"uint32"},{"indexed":false,"name":"WinningNumber1","type":"uint8"},{"indexed":false,"name":"WinningNumber2","type":"uint8"},{"indexed":false,"name":"WinningNumber3","type":"uint8"},{"indexed":false,"name":"WinningNumber4","type":"uint8"},{"indexed":false,"name":"TheRand","type":"bytes32"}],"name":"DrawReadyToPayout","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"Wei","type":"uint256"}],"name":"PlayerWon","type":"event"}]
 
 */
-
 //constructor
 function TheEthereumLottery()
 {
   owner=msg.sender;
   ledger.length=0;
   IndexOfCurrentDraw=0;
+  referral_fee=90;
 }
 modifier OnlyOwner()
 { // Modifier
@@ -60,7 +60,10 @@ modifier OnlyOwner()
 address owner;
 string public Announcements;//just additional feature
 uint public IndexOfCurrentDraw;//starting from 0
+uint8 public referral_fee;
+mapping(address=>uint256) public referral_ledger;
 struct bet_t {
+  address referral;
   uint8[4] Nums;
   bool can_withdraw;//default==false
 }
@@ -180,11 +183,12 @@ OnlyOwner
 		    the_rand);//event
 }
 
-function Play(uint8 MyNum1,
-	      uint8 MyNum2,
-	      uint8 MyNum3,
-	      uint8 MyNum4
-	      )
+function PlayReferred(uint8 MyNum1,
+		      uint8 MyNum2,
+		      uint8 MyNum3,
+		      uint8 MyNum4,
+		      address ref
+		      )
 payable
 {
   if(msg.value != ledger[IndexOfCurrentDraw].PriceOfTicket ||//to play you need to pay 
@@ -197,14 +201,47 @@ payable
      MyNum3 >= MyNum4
      )
     throw;//because you should sort the values yourself
-
+  if(ref!=0)//when there is no refferal, function is cheaper for ~20k gas
+    ledger[IndexOfCurrentDraw].bets[msg.sender].referral=ref;
   ledger[IndexOfCurrentDraw].bets[msg.sender].Nums[0]=MyNum1;
   ledger[IndexOfCurrentDraw].bets[msg.sender].Nums[1]=MyNum2;
   ledger[IndexOfCurrentDraw].bets[msg.sender].Nums[2]=MyNum3;
   ledger[IndexOfCurrentDraw].bets[msg.sender].Nums[3]=MyNum4;
   ledger[IndexOfCurrentDraw].bets[msg.sender].can_withdraw=true;
 }
-	
+// Play wrapper:
+function Play(uint8 MyNum1,
+	      uint8 MyNum2,
+	      uint8 MyNum3,
+	      uint8 MyNum4
+	      )
+{
+  PlayReferred(MyNum1,
+	       MyNum2,
+	       MyNum3,
+	       MyNum4,
+	       0//no referral
+	       );
+}
+function Deposit_referral()//this function is not mandatory to become referral
+  payable//might be used to not withdraw all the funds at once or to invest
+{//probably needed only at the beginnings
+  referral_ledger[msg.sender]+=msg.value;
+}
+function Withdraw_referral()
+{
+  uint val=referral_ledger[msg.sender];
+  referral_ledger[msg.sender]=0;
+  if(!msg.sender.send(val)) //payment
+    throw;
+}
+function set_referral_fee(uint8 new_fee)
+OnlyOwner
+{
+  if(new_fee<50 || new_fee>100)
+    throw;//referrals have at least 50% of the income
+  referral_fee=new_fee;
+}
 function Withdraw(uint32 DrawIndex)
 {
   //if(msg.value!=0) //compiler deals with that, as there is no payable modifier in this f-n
@@ -248,10 +285,19 @@ function Withdraw(uint32 DrawIndex)
   ledger[DrawIndex].bets[msg.sender].can_withdraw=false;
   if(!msg.sender.send(win)) //payment
     throw;
+
+  if(ledger[DrawIndex].bets[msg.sender].referral==0)//it was not referred bet
+    referral_ledger[owner]+=win/100;
+  else
+    {
+      referral_ledger[ledger[DrawIndex].bets[msg.sender].referral]+=
+	win/10000*referral_fee;//(win/100)*(referral_fee/100);
+      referral_ledger[owner]+=
+	win/10000*(100-referral_fee);//(win/100)*((100-referral_fee)/100);
+    }
+
+  
   PlayerWon(win);//event
-  if(!owner.send(win/100))
-    throw;//the fee is less than 1% (fee=1/101),
-  //it's taken from the contract, player wins exactly GuessXOutOf4 Wei
 }
 function Refund(uint32 DrawIndex)
 {
@@ -273,7 +319,7 @@ function Refund(uint32 DrawIndex)
     throw;
 }
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//@@@@@@@@@@@ Here ends what probably you wanted to analyse @@@@@@@@@@@@
+//@@@@@@@@@@@ Here ends what probably you wanted to analyze @@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 function CheckHash(bytes32 TheRand)
