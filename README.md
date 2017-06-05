@@ -12,13 +12,13 @@
 
 # How much you can win?
   At the moment if you guess X out of 4 Winning Numbers you will win:  
-  1 out of 4:     0.1 ETH  
-  2 out of 4:     0.6 ETH  
-  3 out of 4:      88 ETH  
-  4 out of 4: 100.000 ETH  
+  1 out of 4:      0.01 ETH  
+  2 out of 4:      0.06 ETH  
+  3 out of 4:      8.8  ETH  
+  4 out of 4: 10,000    ETH  
 
 # Cost
-  At the moment, you need to send 0.01 ETH to play.  
+  At the moment, you need to send 0.001 ETH to play.  
   You can always verify cost of play function - every draw has "Price of ticket" field with exact cost measured in Wei (10^-18 ETH)  
   The Play() function will reject any amount of ETH which does not equal "Price of ticket" field, so you can not loose your ETH
   on invalid bet (non sorted values will also be rejected). Any other function is free and reject any ETH you send to it.  
